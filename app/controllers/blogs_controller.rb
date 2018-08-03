@@ -1,10 +1,25 @@
 class BlogsController < ApplicationController
   before_action :correct_blog, only: [:show, :edit, :update, :destroy]
-  before_action :current_user, only: [:new, :create]
+  before_action :current_user, only: [:index, :new, :create]
   before_action :check_rights_delete, only: [:destroy]
   before_action :check_rights_update, only: [:edit, :update]
 
-  def index; end
+  def index
+    followeds = Conection.find_followed(current_user.id)
+    @blogs = []
+    followeds.each do |followed|
+      if followed.sender_id == current_user.id
+        user = User.find_by id: followed.recipient_id
+      else
+        user = User.find_by id: followed.sender_id
+      end
+      blogs_user = user.blogs
+      blogs_user.each do |blog|
+        @blogs.push blog
+      end
+    end
+    @blogs.reverse!
+  end
   
   def show
     @support = Supports::BlogSupport.new(@blog, current_user)
@@ -42,10 +57,6 @@ class BlogsController < ApplicationController
   end
 
   private
-
-  def current_user
-    current_user = User.first
-  end
 
   def blog_params
     params.require(:blog).permit Blog::ATTRIBUTES_PARAMS

@@ -1,6 +1,7 @@
 <%= form_for :conection, url: conections_path, remote: true do |f| %>
   <%= f.hidden_field :recipient_id, value: @user.id %>
   <div>
-    <%= f.submit t(".follow"), class: "btn_sign_up"%>
+
+    <%= f.submit t(".follow"), class: "btn btn-primary btn-sm"%>
   </div>
 <% end %>

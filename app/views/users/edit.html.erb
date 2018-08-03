@@ -30,7 +30,7 @@
             </ul>
             <div id="myTabContent" class="tab-content">
               <div class="tab-pane active in" id="home">
-                <%= form_for(@user) do |f| %>
+                <%= form_for @user, namespace: "form_login" do |f| %>
                   <form id="tab">
                     <div >
                       <%= render "shared/error_messages" %>
@@ -49,7 +49,7 @@
                 <% end %>
               </div>
               <div class="tab-pane fade" id="public">
-                <%= form_for(@user) do |f| %>
+                <%= form_for @user, namespace: "public" do |f| %>
                   <form id="tab2">
                     <div>
                       <h4>Public Information</h4>
@@ -84,10 +84,10 @@
                 <% end %>
               </div>
               <div class="tab-pane fade" id="private">
-                <%= form_for(@user) do |f| %>
-                  <form id="tab3">
+                <%= form_for @user, namespace: "private", id: "tab3" do |f| %>
                     <div>
                       <h4>Private Information</h4>
+
                       <%= f.fields_for :email do |email_field| %>
                         <%= email_field.label :email %>
                         <%= email_field.text_field :email, class: 'w50' %>
@@ -96,16 +96,18 @@
                           Public<%= email_field.radio_button :status, "true" %> &nbsp;
                           Private<%= email_field.radio_button :status, "false" %>
                         </p>
-                        <% end %>
-                      <%= f.fields_for :birthday do |b| %>
-                        <%= b.label :birthday %>
-                        <%= b.date_field :birthday, class: 'w50' %>
+                      <% end %>
+
+                      <%= f.fields_for :email do |b| %>
+                        <%= b.label :email %>
+                        <%= b.date_field :email, class: 'w50' %>
                         <%= b.label :status %>
                         <p>
                           Public<%= b.radio_button :status, "true" %> &nbsp;
                           Private<%= b.radio_button :status, "false" %>
                         </p>
-                        <% end %>
+                      <% end %>
+
                       <%= f.fields_for :body do |bo| %>
                         <%= bo.label :body %>
                         <%= bo.text_field :body, class: 'w50' %>
@@ -119,6 +121,7 @@
                           Private<%= bo.radio_button :status, "false" %>
                         </p>
                         <% end %>
+
                       <%= f.fields_for :career do |c| %>
                         <%= c.label :job %>
                         <%= c.text_field :job, class: 'w50', value: @user.career.job %>
@@ -141,7 +144,6 @@
                         <%= f.submit "Save changes", class: "btn btn-primary" %>
                       </div>
                     </div>
-                  </form>
                 <% end %>
               </div>
               <div class="tab-pane fade" id="desire">

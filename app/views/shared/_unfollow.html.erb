@@ -2,7 +2,7 @@
   <%= form_for :conection, url: conection_path(@conection.id),  method: :delete, remote: true do |f| %>
     <%= f.hidden_field :id, value: @conection.id %>
     <div>
-      <%= f.submit t(".unfollow"), class: "btn_sign_up"%>
+      <%= f.submit t(".unfollow"), class: "btn btn-danger btn-sm"%>
     </div>
   <% end %>
 <% else %>
@@ -10,20 +10,20 @@
     <%= form_for :conection, url: conection_path(@conection.id),  method: :delete, remote: true do |f| %>
       <%= f.hidden_field :id, value: @conection.id %>
       <div>
-        <%= f.submit t(".pendding"), class: "btn_sign_up"%>
+        <%= f.submit t(".pendding"), class: "btn btn-danger btn-sm"%>
       </div>
     <% end %>
    <% else %>
     <%= form_for :conection, url: conection_path(@conection.id),  method: :patch, remote: true do |f| %>
       <%= f.hidden_field :id, value: @conection.id %>
       <div>
-        <%= f.submit t(".accept"), class: "btn_sign_up"%>
+        <%= f.submit t(".accept"), class: "btn btn-primary btn-sm"%>
       </div>
     <% end %>
     <%= form_for :conection, url: conection_path(@conection.id),  method: :delete, remote: true do |f| %>
       <%= f.hidden_field :id, value: @conection.id %>
       <div>
-        <%= f.submit t(".deny"), class: "btn_sign_up"%>
+        <%= f.submit t(".deny"), class: "btn btn-danger btn-sm"%>
       </div>
     <% end %>
    <% end %> 

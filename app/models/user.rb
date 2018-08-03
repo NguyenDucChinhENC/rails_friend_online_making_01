@@ -26,7 +26,7 @@ class User < ApplicationRecord
       marital: 3,
       divorced: 4,
       separated: 5
-      }
+    }
   ATTRIBUTES_PARAMS = [:name, :avatar, :nick_name, :genre, :description, :hobby,
    :country, :status, :password, :password_confirmation, :matching,
    email_attributes: Email::ATTRIBUTES_PARAMS, birthday_attributes: Birthday::ATTRIBUTES_PARAMS,
@@ -36,13 +36,13 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: Settings.maximum.length_name}
   has_secure_password
   validates :password, presence: true, length: {minimum: Settings.minimum.length_password}, allow_nil: true
-  with_options update_only:true do |up|
-    up.accepts_nested_attributes_for :email
-    up.accepts_nested_attributes_for :birthday
-    up.accepts_nested_attributes_for :body
-    up.accepts_nested_attributes_for :career
-    up.accepts_nested_attributes_for :desire
-    up.accepts_nested_attributes_for :education
+  with_options update_only: true do
+    accepts_nested_attributes_for :email
+    accepts_nested_attributes_for :birthday
+    accepts_nested_attributes_for :body
+    accepts_nested_attributes_for :career
+    accepts_nested_attributes_for :desire
+    accepts_nested_attributes_for :education
   end
   accepts_nested_attributes_for :email, update_only: true
   accepts_nested_attributes_for :birthday, update_only: true
@@ -88,6 +88,6 @@ class User < ApplicationRecord
   end
 
   def forget
-    update_attributes remember_digest: nil
+    # update_attributes remember_digest: nil
   end
 end

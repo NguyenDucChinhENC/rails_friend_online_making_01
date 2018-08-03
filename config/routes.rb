@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'searchs/index'
+  get 'searchs/create'
   root :to => "blogs#index"
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

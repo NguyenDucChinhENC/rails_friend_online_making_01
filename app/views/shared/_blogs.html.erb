@@ -1,0 +1,22 @@
+<% @blogs.each do |blog| %>
+<div class="post-content">
+	<% if blog.photo.present? %>
+	  <%=image_tag blog.photo_url(:display), class: "img-responsive post-image" %>
+    <% end %>
+      <div class="post-container">
+        <%= image_tag("users/user-5.jpg", :class => "profile-photo-md pull-left") %>
+        <div class="post-detail">
+          <div class="user-info">
+            <h5><a href="timeline.html" class="profile-link"><%= blog.name %></a> <span class="following">following</span></h5>
+            <p class="text-muted"><%= time_ago_in_words(blog.created_at) %> ago</p>
+          </div>
+          <div class="line-divider"></div>
+          <div class="post-text">
+            <p><%= blog.body %><i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+          </div>
+          <div class="line-divider"></div>
+      </div>
+    </div>
+</div>
+<hr>
+<% end %>

@@ -1,0 +1,87 @@
+<div id="page-contents">
+  <div class="container">
+    <div class="row">
+      <!-- Newsfeed Common Side Bar Left
+      ================================================= -->
+      <div class="col-md-3 static">
+        <div class="profile-card">
+          <%= image_tag("users/user-1.jpg", :class => "profile-photo") %>
+          <h5><a href="timeline.html" class="text-white">Sarah Cruiz</a></h5>
+          <a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 followers</a>
+        </div><!--profile card ends-->
+        <%= render "template/new_feed_nav_new_feed" %>
+        <div id="chat-block">
+          <div class="title">Chat online</div>
+          <%= render "template/new_feed_online_users" %>
+        </div><!--chat block ends-->
+      </div>
+      <div class="col-md-7">
+        <%= render "template/new_feed_post_create_box" %>
+
+        <!-- Friend List
+        ================================================= -->
+        <form class="find_form" action="#" method="post">
+          <div class="row find_row">
+            <div class="col-sm-2 control-label"><%= t "gener" %></div>
+            <div class="col-sm-6">
+              <label class="radio-inline">
+                <input type="radio" name="optradio" checked>Male
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio">Female
+              </label>
+            </div>
+          </div>
+          <div class="row find_row">
+            <div class="col-sm-2 control-label"><%= t "age" %></div>
+            <div class="col-sm-6">
+              <input id="ex2" type="text" class="span2" value="" data-slider-min="18" data-slider-max="80" data-slider-step="5" data-slider-value="[18,30]"/>
+            </div>
+          </div>
+          <button class="btn btn-primary find_form_btn fright"><%= t "search" %></button>
+        </form>
+        <div class="row">
+          <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+            <% @users.each_with_index do |user, i| %>
+              <div class="item <%= i == 0 ? "active" : nil %>">
+                <div class="card" style="width: 18rem;">
+                  <div class="card_images">
+                    <%= image_tag "avatar-default", class: "card_image" %>
+                    <span class="card_title"><%= user.name %> - 22 - Ha Noi</span>
+                  </div>
+                  <div class="card_action">
+                    <button class="btn btn-primary pull-left card_btn card_profile_btn"><%= t "profile" %></button>
+                    <button class="btn btn-default card_btn pull-right" data-slide="next" href="#myCarousel">Next</button>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+
+            <!-- Left and right controls -->
+            <a class="carousel-control" href="#myCarousel" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left"></span>
+              <span class="sr-only"><%= t "previous" %></span>
+            </a>
+            <a class="card_next_btn carousel-control" href="#myCarousel" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right"></span>
+              <span class="sr-only"><%= t "back" %></span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsfeed Common Side Bar Right
+      ================================================= -->
+      <div class="col-md-2 static">
+        <div class="suggestions" id="sticky-sidebar">
+          <%= render "template/new_feed_who_to_follow" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "slide_card" %>

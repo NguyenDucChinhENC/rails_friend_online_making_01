@@ -6,13 +6,15 @@ class UsersController < ApplicationController
   before_action :relationship, only: %i(show show_private show_desire show_public
     timeline_friends)
   before_action :check_right, only: %i(show_desire show_private)
+  before_action :find_conection, only: %i(show show_public show_private show_desire)
 
   def timeline_friends
     @user.conections
   end
 
   def show
-    render :show_public
+    @blogs = @user.blogs.page(params[:page]).per Settings.pagination.report
+    @blogs = @blogs.reverse
   end
 
   def show_public
@@ -129,10 +131,6 @@ class UsersController < ApplicationController
     email = @email.email
   end
 
-  def load_user
-    @user = current_user
-  end
-
   def create_default_tracsaction
     @local = @user.build_local
     @local.latitude = 20.9
@@ -152,5 +150,19 @@ class UsersController < ApplicationController
   def check_right
     return if @conection&.status
     render :show_public
+  end
+  def find_conection
+    if logged_in?
+      @conection = Conection.find_follow(current_user.id, @user.id).first
+      @conection? @followed = @conection : @followed = false
+      @follow = Conection.find_follow(current_user.id, @user.id)
+      if current_user.id == @user.id
+        conections = Conection.find_want_follow(current_user)
+        @wanteds = []
+        conections.each do |conection|
+          @wanteds.push User.find_by id: conection.sender_id
+        end
+      end
+    end
   end
 end
