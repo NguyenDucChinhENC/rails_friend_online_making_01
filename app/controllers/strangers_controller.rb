@@ -1,5 +1,5 @@
 class StrangersController < ApplicationController
-  before_action :check_blocked_user, :logged_in_user, only: %i(index find_stranger talk)
+  before_action :check_blocked_user, only: %i(index find_stranger talk)
 
   def index
     @user = current_user

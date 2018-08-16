@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   include TransactionsHelper
-  before_action :check_blocked_user, :logged_in_user, only: %i(index create)
+  before_action :check_blocked_user, only: %i(index create)
 
   def index
     @tran = current_user.local

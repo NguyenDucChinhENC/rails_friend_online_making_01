@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, :check_blocked_user, only: %i(timeline_friends edit update show destroy)
+  before_action :check_blocked_user, only: %i(timeline_friends create edit update show new destroy)
   before_action :correct_user, :get_new_report, only: %i(show edit update show_desire show_public
     show_private timeline_friends show_posts)
   before_action :user_params, only: :update
@@ -81,14 +81,6 @@ class UsersController < ApplicationController
 
   def email_params
     params.require(:user).permit Email::ATTRIBUTES_PARAMS
-  end
-
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = t("users.logged_in_user.danger")
-      redirect_to login_url
-    end
   end
 
   def edit_email

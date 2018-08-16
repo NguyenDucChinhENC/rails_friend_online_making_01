@@ -1,5 +1,5 @@
 class ConectionsController < ApplicationController
-  before_action :check_blocked_user, :logged_in_user, only: %i(create update destroy)
+  before_action :check_blocked_user, only: %i(create update destroy)
   before_action :correct_follow, only: %i(update destroy)
 
   def create

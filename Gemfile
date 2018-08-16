@@ -29,6 +29,7 @@ gem "glyphicons-rails", "~> 0.1.2"
 gem "bootstrap-slider-rails"
 gem "social-share-button", github: "huacnlee/social-share-button"
 gem "simple_form"
+gem "devise"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -18,7 +18,7 @@
         <% if @blog.photo.present? %>
           <%=image_tag @blog.photo_url, class: "w100 img-responsive post-image" %>
         <% end %>
-        <%= social_share_button_tag(@blog.body, image: @blog.photo_url %>
+        <%= social_share_button_tag(@blog.body, image: @blog.photo_url)%>
         <div id="chat-block" class="txt_align_left">
           <div class="post-content">
             <div class="post-container">

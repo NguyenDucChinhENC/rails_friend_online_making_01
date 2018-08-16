@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :check_blocked_user, :logged_in_user, only: %i(show create edit)
+  before_action :check_blocked_user, only: %i(show create edit)
   before_action :correct_comment, only: %i(show edit)
 
   def show

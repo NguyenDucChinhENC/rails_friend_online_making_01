@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => {:registrations => "registrations"}
   root :to => "blogs#index"
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"

@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :check_blocked_user, :logged_in_user, only: %i(create)
+  before_action :check_blocked_user, only: %i(create)
 
   def create
     @report = Report.new report_params.merge(user: current_user)

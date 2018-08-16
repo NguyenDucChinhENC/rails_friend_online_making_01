@@ -1,5 +1,5 @@
 class Admin::AdminController < ApplicationController
-  before_action :logged_in_user, :is_admin?
+  before_action :is_admin?
 
   private
 

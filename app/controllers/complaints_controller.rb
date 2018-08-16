@@ -1,5 +1,5 @@
 class ComplaintsController < ApplicationController
-  before_action :logged_in_user, :check_correct_user, only: %i(index create)
+  before_action :check_correct_user, only: %i(index create)
 
   def index
     @complaint = Complaint.new

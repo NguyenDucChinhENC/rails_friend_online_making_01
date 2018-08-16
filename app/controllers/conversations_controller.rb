@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_action :check_blocked_user, :logged_in_user, :get_conversations, only: %i(index show)
+  before_action :check_blocked_user, :get_conversations, only: %i(index show)
   before_action :get_current_conversation,
     :allowed?, only: %i(show)
 

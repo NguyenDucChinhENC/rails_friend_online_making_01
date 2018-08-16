@@ -1,5 +1,5 @@
 class BlogsController < ApplicationController
-  before_action :logged_in_user, :check_blocked_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_blocked_user, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   before_action :correct_blog, only: [:show, :edit, :update, :destroy]
   before_action :current_user, only: [:new, :create]
   before_action :check_rights_delete, only: [:destroy]
